@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Raleway:200,100,400" rel="stylesheet" type="text/css" />
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+	<title>File Translator</title>
+</head>
+<style >
+	/*body{
+  background: rgba(0,0,0,0.9);
+}*/
+
+
+
+
+form button{
+  margin: 0;
+  color: #fff;
+  background: #16a085;
+  border: none;
+  width: 75%;
+  padding: 1.5%;
+  
+  margin-left: 10%;
+  border-radius: 4px;
+  border-bottom: 4px solid #117A60;
+  transition: all .2s ease;
+  outline: none;
+}
+form button:hover{
+  background: #149174;
+	color: #fff;
+  cursor: pointer;
+}
+form button:active{
+  border:0;
+}
+
+.view{
+  display: flex;
+  width: 75%;
+  left: 10%;
+  margin-top: 5%;
+  margin-bottom: 2%;
+  position: relative;
+}
+#select{
+  top: 2%;
+}
+
+
+ .button {
+  margin: 0;
+  color: #fff;
+  background: #16a085;
+  border: none;
+  padding: 1.5%;
+  width: 75%;
+  margin-top: 2%;
+  text-decoration: none;
+  margin-bottom: 4%;
+  margin-left: 10%;
+  border-radius: 4px;
+  border-bottom: 4px solid #117A60;
+  transition: all .2s ease;
+  outline: none;
+}
+ .button:hover{
+  background: #149174;
+	color: #fff;
+  cursor: pointer;
+}
+.button:active{
+  border:0;
+}
+#download{
+  text-decoration: none;
+  color: #fff;
+
+}
+
+.form {
+  width: 75%;
+  margin: 5% auto;
+}
+.form__container {
+  position: relative;
+  width: 75%;
+  height: 200px;
+  margin-left: 10%;
+  border: 2px dashed silver;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: silver;
+  margin-bottom: 5px;
+}
+.form__container.active {
+  background-color: rgba(192, 192, 192, 0.2);
+}
+.form__file {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  cursor: pointer;
+  opacity: 0;
+}
+.form__files-container {
+  display: flex;
+  width: 100%;
+  padding: 5px 0;
+  justify-content: space-between;
+  align-items: center;
+}
+.form__text {
+  font-size: 18px;
+  color: #333;
+  max-width: 450px;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.form__icon {
+  font-size: 22px;
+  color: #1871b5;
+  text-decoration: none;
+}
+
+
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 580px) {
+  .view{
+    margin-top: 18%;
+    width: 90%;
+    margin-left: -5%;
+   
+  }
+  .form__container{
+  width: 90%;
+  margin-left: 5%;
+  height: 50vh;
+
+  }
+  .button{
+    width: 90%;
+    margin-left: 5%;
+    
+  }
+  form button{
+    width: 90%;
+    margin-left: 5%;
+  }
+}
+
+</style>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand"  style="font-size: 1.5em;"><sup>Un</sup>readable</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+		  <span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarNav">
+		  <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url 'file' %}">File Translator</a>
+        </li>
+			
+			<li class="nav-item">
+			  <a class="nav-link disabled"  tabindex="-1" aria-disabled="true">Text Extractor</a>
+			</li>
+		  </ul>
+		</div>
+	  </nav>
+
+
+    {% for message in messages  %}            
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+          <strong>Message : </strong> {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+    {% endfor %}
+
+
+  <form method="post" enctype="multipart/form-data">
+
+    <div class="view">
+      <select name="src" id="select" style="width:50%; padding: 2%; text-align: center;">
+        <option selected="selected" disabled>From</option>
+        {% for entry in items %}
+            <option value="{{entry}}" >{{entry}}</option>
+          {% endfor %}
+        </select>
+
+        <select name="dest" id="select" style="width:50%;padding: 2%; text-align: center;">
+          <option selected="selected" disabled>To:</option>
+      
+          {% for entry in items %}
+              <option value="{{entry}}">{{entry}}</option>
+      
+          {% endfor %}
+          </select>
+          </div>
+    {% csrf_token %}
+    
+    <form class="form" >
+      <label class="form__container" id="upload-container"  >
+        <p id="out"> Choose or Drag & Drop Files ( Supported Extension : .txt, .docx )</p>
+        <input class="form__file" id="upload-files" type="file" name="file" onchange="myFile()" multiple="multiple" >
+        
+      </label>
+      <div id="files-list-container"></div>
+      <button type="submit">Translate</button>
+    </form>
+
+  </form>
+
+  
+ <button class="button"><a href="{{docs}}" download id="download">Download</button></a>
+
+
+
+
+
+
+
+
+
+ 
+
+ <footer class="bg-dark text-center text-white" style="bottom: 100%;" >
+	<!-- Grid container -->
+   
+	<!-- Copyright -->
+	<div class="text-center p-3" id="a" style="background-color: rgba(0, 0, 0, 0.2);">
+  
+	  <section class="mb-4"  >
+	
+	 
+	  
+  
+	  
+		<a class="btn btn-outline-light btn-floating m-1"  href="https://github.com/Anmoldeepsaini08" role="button"
+		  ><i class="fab fa-github"></i
+		></a>
+  
+  
+		<a class="btn btn-outline-light btn-floating m-1" href="https://www.linkedin.com/in/anmoldeep-saini-77b4a0194/" role="button"
+		  ><i class="fab fa-linkedin-in"></i
+		></a>
+  
+  
+	 
+	  </section>
+	</div>
+  
+  
+	  © Designed and Created by:
+	  <a class="text-white" href="https://www.linkedin.com/in/anmoldeep-saini-77b4a0194/">Anmoldeep Saini</a>
+	  
+	<!-- Copyright -->
+  </footer>
+
+
+</body>
+
+<script>
+  function myFile()
+   {
+   document.getElementById('out').innerText="File has been Selected, Click the Translate Button below!";
+   }
+  </script>
+</html>
